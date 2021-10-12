@@ -15,11 +15,6 @@ const questions = [
   },
   {
     type: "input",
-    message: "Table of contents:",
-    name: "contents"
-  },
-  {
-    type: "input",
     message: "How do you install the application?",
     name: "installation"
   },
@@ -34,22 +29,21 @@ const questions = [
     name: "credits"
   },
   {
-    type: "input",
-    message: "How is your project licensed?",
+    type: "list",
+    message: "The MIT License", // "Mozilla Public License 2.0",
     name: "license"
   },
 ];
 
-fs.writeFile("README.md", finalReadMe, err => {
-  err ? console.log("Oh no! Something went wrong 😵‍💫.") : console.log("Here's your README.md file!")
-})
-
 function init() {
   inquirer
-  .prompt(questions)
-  .then(response => {
-    const finalReadMe = generateMarkdown(response);
-  })
+    .prompt(questions)
+    .then(response => {
+      const finalReadMe = generateMarkdown(response);
+      fs.writeFile("TESTREADME.md", finalReadMe, err => {
+        err ? console.log("Oh no! Something went wrong 😵‍💫.") : console.log("Here's your README.md file!")
+      })
+    })
 }
 
 init();

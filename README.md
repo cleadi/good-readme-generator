@@ -1,2 +1,1 @@
-# good-readme-generator
-Boot Camp HW #7
+# Boot Camp HW # 7
