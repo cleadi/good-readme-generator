@@ -9,6 +9,11 @@ const questions = [
     name: "name"
   },
   {
+    type: "number",
+    message: "What year it is? (YYYY)",
+    name: "year"
+  },
+  {
     type: "input",
     message: "Project title:",
     name: "title"
@@ -47,7 +52,13 @@ const questions = [
     type: "list",
     name: "license",
     message: "Please choose which license you'd like to use:",
-    choices: ["The MIT License", "Mozilla Public License 2.0", "Apache 2.0 License", "No license selected"]
+    choices: [
+      "Apache 2.0 License",
+      "BSD 3-Clause License",
+      "The MIT License",
+      "Mozilla Public License 2.0",
+      "No license selected"
+    ]
   },
 ];
 

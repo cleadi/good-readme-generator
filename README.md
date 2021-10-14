@@ -7,7 +7,10 @@
 - Once all the questions have been answered, the application will generate a README.md file, with the file same *sample-README.md* -- which you can change on your local machine.
 
 ## Application Walkthrough Video
-![work-day-scheduler](assets/images/home-page.png) <-ADJUST ONCE VIDEO IS RECORDED>
+https://watch.screencastify.com/v/3PpTObQuVOIqj7jHVxUo
+
+## Screenshot
+![good-readme-generator-screenshot](assets/images/good-readme-generator-screenshot.jpg)
 
 ## Website link
 https://github.com/cleadi/good-readme-generator

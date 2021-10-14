@@ -1,42 +1,46 @@
 function renderLicenseBadge(license) {
-  const selectedLicense = "";
-  if (selectedLicense === "The MIT License") {
-    selectedLicense = `[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)`
-  } else if (selectedLicense === "Mozilla Public License 2.0") {
-    selectedLicense = `[![License: MPL 2.0](https://img.shields.io/badge/License-MPL%202.0-brightgreen.svg)](https://opensource.org/licenses/MPL-2.0)`
-  } else if (selectedLicense === "Apache 2.0 License") {
-    selectedLicense = `[![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)`
+  let selectedLicense = "";
+  if (license === "The MIT License") {
+    selectedLicense = `![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)`
+  } else if (license === "Mozilla Public License 2.0") {
+    selectedLicense = `![License: MPL 2.0](https://img.shields.io/badge/License-MPL%202.0-brightgreen.svg)`
+  } else if (license === "Apache 2.0 License") {
+    selectedLicense = `![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)`
+  } else if (license === "BSD 3-Clause License") {
+    selectedLicense = `![License](https://img.shields.io/badge/License-BSD%203--Clause-blue.svg)`
   } else {
-  license = "N/A";
+    license = "N/A";
   }
   return selectedLicense;
 };
 
 function renderLicenseLink(license) {
-  const selectedLicenseLink = "";
-  if (selectedLicenseLink === "The MIT License") {
+  let selectedLicenseLink = "";
+  if (license === "The MIT License") {
     selectedLicenseLink = `https://opensource.org/licenses/MIT`
-  } else if (selectedLicenseLink === "Mozilla Public License 2.0") {
-    selectedLicenseLink = `https://www.mozilla.org/en-US/MPL/`
-  } else if (selectedLicenseLink === "Apache 2.0 License") {
+  } else if (license === "Mozilla Public License 2.0") {
+    selectedLicenseLink = `https://opensource.org/licenses/MPL-2.0`
+  } else if (license === "Apache 2.0 License") {
     selectedLicenseLink = `https://www.apache.org/licenses/LICENSE-2.0.html`
+  } else if (license === "BSD 3-Clause License") {
+    selectedLicenseLink = `https://opensource.org/licenses/BSD-3-Clause`
   } else {
-    license = "N/A"
+    license = "N/A";
   }
   return selectedLicenseLink;
 };
 
-function renderLicenseSection(license) {
-  const selectedLicenseText = "";
-  if (selectedLicenseText === "The MIT License") {
-    selectedLicenseText = `Copyright 2021 ${data.name}
+function renderLicenseSection(license, name, year) {
+  let selectedLicenseText = "";
+  if (license === "The MIT License") {
+    selectedLicenseText = `Copyright ${year} ${name}
 
     Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
     
     The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
     
     THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.`
-  } else if (selectedLicenseText === "Mozilla Public License 2.0") {
+  } else if (license === "Mozilla Public License 2.0") {
     selectedLicenseText = `Mozilla Public License Version 2.0
     ==================================
     
@@ -410,8 +414,8 @@ function renderLicenseSection(license) {
     
       This Source Code Form is "Incompatible With Secondary Licenses", as
       defined by the Mozilla Public License, v. 2.0.`
-  } else if (selectedLicenseText === "Apache 2.0 License") {
-    selectedLicenseText = `Copyright 2021 ${data.name}
+  } else if (license === "Apache 2.0 License") {
+    selectedLicenseText = `Copyright ${year} ${name}
 
     Licensed under the Apache License, Version 2.0 (the "License");
     you may not use this file except in compliance with the License.
@@ -424,6 +428,20 @@ function renderLicenseSection(license) {
     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
     See the License for the specific language governing permissions and
     limitations under the License.`
+  } else if (license === "BSD 3-Clause License") {
+    selectedLicenseText = `Note: This license has also been called the "New BSD License" or "Modified BSD License". See also the 2-clause BSD License.
+
+    Copyright ${year} ${name}
+    
+    Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
+    
+    1. Redistributions of source code must retain the above copyright notice, this list of conditions and the following disclaimer.
+    
+    2. Redistributions in binary form must reproduce the above copyright notice, this list of conditions and the following disclaimer in the documentation and/or other materials provided with the distribution.
+    
+    3. Neither the name of the copyright holder nor the names of its contributors may be used to endorse or promote products derived from this software without specific prior written permission.
+    
+    THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.`
   } else {
     license = "N/A";
   }
@@ -431,10 +449,10 @@ function renderLicenseSection(license) {
 };
 
 function generateMarkdown(data) {
-  console.log(data)
   return `
-  # ${data.title}
   ${renderLicenseBadge(data.license)}
+  # ${data.title}
+
   ## Description
   ${data.description}
 
@@ -458,8 +476,8 @@ function generateMarkdown(data) {
   ${data.email}
 
   ## License
-  ${renderLicenseSection(data.license)}
-  ${renderLicenseLink(data.license)}
+  ${renderLicenseSection(data.license, data.name, data.year)}
+    ${renderLicenseLink(data.license)}
 `};
 
 module.exports = generateMarkdown;
